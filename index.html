@@ -18,6 +18,32 @@ body{font-family:var(--font-body);background:var(--bg-dark);color:var(--text-mai
 body:not(.theme-kids)::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:0;}
 body.theme-kids::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 20% 30%,rgba(77,200,255,.08),transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,107,157,.08),transparent 50%);pointer-events:none;z-index:0;}
 .app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:12px 16px 110px;}
+/* User Switcher */
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.help-btn{background:var(--bg-card);border:1.5px solid var(--border-glow);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .2s;color:var(--text-dim);flex-shrink:0;}
+.help-btn:hover{border-color:var(--accent1);color:var(--accent1);}
+.help-modal-body{text-align:left;max-height:60vh;overflow-y:auto;padding-right:4px;}
+.help-modal-body::-webkit-scrollbar{width:4px;}.help-modal-body::-webkit-scrollbar-thumb{background:var(--text-dim);border-radius:2px;}
+.help-section{margin-bottom:16px;}
+.help-section-title{font-size:14px;font-weight:800;color:var(--accent1);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.help-section p{font-size:12px;line-height:1.7;color:var(--text-dim);margin-bottom:4px;}
+.help-section .help-highlight{color:var(--text-main);font-weight:700;}
+.user-switcher{display:flex;gap:6px;margin-bottom:10px;padding:8px;background:var(--bg-card);border:1px solid var(--border-glow);border-radius:var(--radius);box-shadow:var(--card-shadow);}
+.user-btn{flex:1;padding:8px 4px;background:transparent;border:2px solid transparent;border-radius:10px;color:var(--text-dim);font-family:var(--font-body);font-size:12px;font-weight:700;cursor:pointer;transition:all .3s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.user-btn .user-emoji{font-size:24px;}
+.user-btn .user-name{max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.user-btn.active{border-color:var(--accent1);color:var(--text-main);background:var(--bg-card2);box-shadow:0 0 10px rgba(0,212,255,.12);}
+.user-btn .user-lv{font-family:var(--font-pixel);font-size:7px;color:var(--accent3);}
+.user-edit-btn{background:none;border:none;color:var(--text-dim);font-size:14px;cursor:pointer;padding:4px;align-self:center;transition:color .2s;}
+.user-edit-btn:hover{color:var(--accent1);}
+/* User Edit Modal */
+.ue-field{margin-bottom:14px;text-align:left;}
+.ue-label{font-size:12px;color:var(--text-dim);margin-bottom:6px;display:block;}
+.ue-input{width:100%;padding:10px 12px;background:var(--bg-card2);border:1.5px solid var(--border-glow);border-radius:10px;color:var(--text-main);font-family:var(--font-body);font-size:15px;outline:none;transition:border-color .3s;}
+.ue-input:focus{border-color:var(--accent1);}
+.ue-emoji-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.ue-emoji-opt{width:40px;height:40px;border:2px solid transparent;border-radius:10px;background:var(--bg-card2);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:all .2s;}
+.ue-emoji-opt.sel{border-color:var(--accent1);background:rgba(0,212,255,.1);}
 .mode-switcher{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;font-size:13px;font-weight:700;}
 .mode-switcher label{color:var(--text-dim);cursor:pointer;transition:color .3s;}.mode-switcher label.active-label{color:var(--accent1);}
 .switch-track{width:52px;height:28px;background:var(--bg-card2);border:2px solid var(--border-glow);border-radius:14px;position:relative;cursor:pointer;transition:all .3s;}
@@ -76,6 +102,19 @@ body.theme-kids::before{content:'';position:fixed;inset:0;background:radial-grad
 .qt{flex:1;font-size:14px;line-height:1.4;}.qc.done .qt{text-decoration:line-through;color:var(--text-dim);}
 .qx{font-family:var(--font-pixel);font-size:8px;color:var(--accent4);white-space:nowrap;}
 .qd{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;padding:4px;border-radius:4px;transition:color .2s;}.qd:hover{color:var(--danger);}
+.qed{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:4px;border-radius:4px;transition:color .2s;}.qed:hover{color:var(--accent1);}
+.q-repeat{font-size:10px;color:var(--accent5);margin-left:4px;}
+.q-actions{display:flex;gap:2px;align-items:center;flex-shrink:0;}
+.q-edit-input{flex:1;padding:6px 10px;background:var(--bg-card2);border:1.5px solid var(--accent1);border-radius:8px;color:var(--text-main);font-family:var(--font-body);font-size:14px;outline:none;}
+.day-btn{width:32px;height:32px;border:1.5px solid rgba(128,128,128,.2);border-radius:8px;background:transparent;color:var(--text-dim);font-size:11px;font-weight:800;font-family:var(--font-body);cursor:pointer;transition:all .2s;}
+.day-btn.sel{border-color:var(--accent5);color:var(--accent5);background:rgba(178,77,255,.1);}
+.q-days-mini{font-size:9px;color:var(--accent5);margin-left:4px;}
+.q-filters{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap;}
+.q-fil{padding:5px 12px;border:1.5px solid rgba(128,128,128,.15);border-radius:20px;background:transparent;color:var(--text-dim);font-family:var(--font-body);font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;}
+.q-fil.active{border-color:var(--accent1);color:var(--accent1);background:rgba(0,212,255,.08);}
+.q-cat{font-size:10px;margin-left:4px;padding:1px 6px;border-radius:8px;font-weight:700;}
+.q-cat-health{background:rgba(255,107,157,.12);color:var(--accent2);}
+.q-cat-study{background:rgba(0,212,255,.12);color:var(--accent1);}
 .qe{text-align:center;padding:40px 20px;color:var(--text-dim);font-size:14px;}.qe .ei{font-size:44px;margin-bottom:12px;display:block;}
 
 /* Timer */
@@ -169,9 +208,9 @@ body.theme-kids::before{content:'';position:fixed;inset:0;background:radial-grad
 .sched-sum-label{font-size:10px;color:var(--text-dim);}
 .ssn1{color:var(--accent1);}.ssn2{color:var(--accent3);}.ssn3{color:var(--danger);}
 
-.notif-banner{display:none;position:fixed;top:16px;left:50%;transform:translateX(-50%);max-width:440px;width:calc(100% - 32px);padding:14px 18px;background:var(--bg-card);border:2px solid var(--accent1);border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:5000;animation:notifIn .4s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:10px;}
+.notif-banner{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);max-width:440px;width:calc(100% - 32px);padding:14px 18px;background:var(--bg-card);border:2px solid var(--accent1);border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:5000;animation:notifIn .4s cubic-bezier(.34,1.56,.64,1);align-items:center;gap:10px;}
 .notif-banner.show{display:flex;}
-@keyframes notifIn{from{transform:translateX(-50%) translateY(-100%);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+@keyframes notifIn{from{transform:translateX(-50%) translateY(100%);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
 .notif-icon{font-size:28px;flex-shrink:0;}
 .notif-body{flex:1;}
 .notif-title{font-family:var(--font-pixel);font-size:9px;color:var(--accent1);margin-bottom:2px;}
@@ -229,48 +268,42 @@ body.theme-kids::before{content:'';position:fixed;inset:0;background:radial-grad
 .lul{font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--accent1);text-shadow:0 0 30px rgba(0,212,255,.8);}
 .pwa-b{display:none;padding:12px 16px;background:var(--bg-card2);border:1px solid var(--border-glow);border-radius:var(--radius);margin-bottom:12px;font-size:13px;align-items:center;gap:8px;box-shadow:var(--card-shadow);}
 .pwa-b.show{display:flex;}.pwa-bt{flex:1;}.pwa-bc{background:none;border:none;color:var(--text-dim);font-size:18px;cursor:pointer;}
+.help-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border-glow);background:var(--bg-card);color:var(--accent1);font-size:16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}.help-btn:active{transform:scale(.92);}
+.help-body{text-align:left;max-height:60vh;overflow-y:auto;padding-right:4px;}
+.help-body::-webkit-scrollbar{width:4px;}.help-body::-webkit-scrollbar-thumb{background:var(--text-dim);border-radius:2px;}
+.help-section{margin-bottom:16px;}
+.help-h{font-family:var(--font-display);font-size:13px;font-weight:900;color:var(--accent1);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.help-p{font-size:13px;line-height:1.7;color:var(--text-main);}
+.help-p b{color:var(--accent4);}
+.help-table{width:100%;font-size:12px;border-collapse:collapse;margin:6px 0;}
+.help-table td{padding:4px 8px;border-bottom:1px solid rgba(128,128,128,.1);}
+.help-table td:first-child{color:var(--accent4);white-space:nowrap;font-weight:700;}
 @keyframes confettiFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
 @media(max-width:360px){.trw{width:180px;height:180px;}.tt{font-size:36px;}.sg{grid-template-columns:1fr;}.tbb{font-size:24px;}}
 </style>
 </head>
 <body>
 <div class="app" id="app">
-  <div class="pwa-b" id="pwaBanner"><span>📱</span><div class="pwa-bt">ホーム画面に追加するとアプリとして使えます！</div><button class="pwa-bc" id="pwaBannerClose">✕</button></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;"><div style="font-family:var(--font-display);font-size:14px;font-weight:900;color:var(--accent1);">⚔️ Focus Quest</div><button class="help-btn" onclick="document.getElementById('helpModal').classList.add('show')">❓</button></div>
+  <div class="user-switcher" id="userSwitcher"></div>
   <div class="mode-switcher"><label id="lA" class="active-label">🗡️ おとな</label><div class="switch-track" id="msTrack"><div class="switch-thumb"></div></div><label id="lK">🌈 こども</label></div>
   <div class="profile-bar" id="profBar"></div>
   <div class="status-bar"><div class="pi"><div class="pa" id="pAvatar">⚔️</div><div><div class="pl" id="pLevel">Lv.1</div><div class="pn" id="pName">冒険者</div></div></div><div class="xps"><div class="xpl">EXP</div><div class="xpbg"><div class="xpf" id="xpBar" style="width:0%"></div></div><div class="stb">🔥 <span id="strk">0</span> 日連続</div></div></div>
   <div class="tbc"><div class="tbh"><div class="tbt">🏦 <span id="tbTT">タイムバンク</span></div></div><div class="tbb" id="tbBal">00:00</div><div class="tbs" id="tbSub">集中した時間を貯金して、自由時間に変換しよう</div><div class="tba"><button class="tbn tbd" id="tbDep">＋ ためる</button><button class="tbn tbw" id="tbWith">－ つかう</button></div></div>
   <div class="nav-tabs">
     <button class="nav-tab active" data-tab="quests"><span class="ti">⚔️</span>クエスト</button>
-    <button class="nav-tab" data-tab="schedule"><span class="ti">📋</span>予定</button>
     <button class="nav-tab" data-tab="timer"><span class="ti">⏱️</span>タイマー</button>
     <button class="nav-tab" data-tab="shield"><span class="ti">🛡️</span>シールド</button>
     <button class="nav-tab" data-tab="stats"><span class="ti">📊</span>きろく</button>
   </div>
 
-  <div class="tc active" id="tab-quests"><div class="st">📜 今日のクエスト</div><div class="qir"><input type="text" class="qi" id="qInp" placeholder="クエストを追加..." maxlength="100"><button class="btn btn-p" id="addQ">+追加</button></div><div class="ql" id="qList"></div></div>
-
-  <!-- Schedule Tab -->
-  <div class="tc" id="tab-schedule">
-    <div class="st">📋 <span id="schedTitle">今日のスケジュール</span></div>
-    <div class="sched-add">
-      <input type="time" class="sched-time-input" id="schedTimeInp" value="09:00">
-      <input type="text" class="sched-text-input" id="schedTextInp" placeholder="予定を入力..." maxlength="80">
-      <button class="btn btn-p" id="addSched" style="padding:10px 12px;font-size:13px;">+追加</button>
-    </div>
-    <div class="sched-summary" id="schedSummary">
-      <div class="sched-sum-card"><div class="sched-sum-num ssn1" id="ssTotal">0</div><div class="sched-sum-label">予定</div></div>
-      <div class="sched-sum-card"><div class="sched-sum-num ssn2" id="ssDone">0</div><div class="sched-sum-label">完了</div></div>
-      <div class="sched-sum-card"><div class="sched-sum-num ssn3" id="ssMissed">0</div><div class="sched-sum-label">未達</div></div>
-    </div>
-    <div class="timeline" id="schedTimeline"></div>
-  </div>
+  <div class="tc active" id="tab-quests"><div class="st">📜 今日のクエスト</div><div class="qir"><input type="text" class="qi" id="qInp" placeholder="クエストを追加..." maxlength="100"><button class="btn btn-p" id="addQ">+追加</button></div><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;"><label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-dim);cursor:pointer;"><span>⚡EXP:</span><input type="number" id="qExpInp" value="15" min="1" max="999" style="width:50px;padding:4px 6px;background:var(--bg-card);border:1px solid var(--border-glow);border-radius:8px;color:var(--text-main);font-family:var(--font-pixel);font-size:10px;text-align:center;outline:none;"></label><select id="qCatInp" style="padding:5px 8px;background:var(--bg-card);border:1px solid var(--border-glow);border-radius:8px;color:var(--text-main);font-family:var(--font-body);font-size:12px;outline:none;"><option value="">⚔️ 通常</option><option value="health">🏥 健康</option><option value="study">📚 勉強</option></select><label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-dim);cursor:pointer;"><input type="checkbox" id="qRepeat" style="accent-color:var(--accent5);width:16px;height:16px;" onchange="document.getElementById('qDaysRow').style.display=this.checked?'flex':'none'"> <span id="qRepeatLabel">🔁 くりかえし</span></label></div><div id="qDaysRow" style="display:none;gap:4px;margin-bottom:14px;flex-wrap:wrap;"></div><div class="q-filters" id="qFilters"></div><div class="ql" id="qList"></div></div>
 
   <div class="tc" id="tab-timer"><div class="st">⏱️ 短時間集中タイマー</div><div class="td"><div class="tml" id="tmLabel">⚔️ FOCUS MODE</div><div class="trw"><svg class="trs" viewBox="0 0 240 240"><circle class="trb" cx="120" cy="120" r="105"/><circle class="trp" id="tmRing" cx="120" cy="120" r="105" stroke-dasharray="659.73" stroke-dashoffset="0"/></svg><div class="tcn"><div class="tt" id="tmTime">15:00</div><div class="tdl hid" id="tmDead"></div></div></div><div class="sds" id="sDots"></div><div class="tcs"><button class="bt btr" id="tmRst">↺</button><button class="bt bts" id="tmStr">▶</button></div></div><div class="tps"><button class="tp active" data-minutes="15">15分</button><button class="tp" data-minutes="10">10分</button><button class="tp" data-minutes="20">20分</button><button class="tp" data-minutes="25">25分</button><button class="tp" data-minutes="5" data-break="true">休憩5分</button></div></div>
 
   <div class="tc" id="tab-shield"><div class="st">🛡️ 誘惑シールド</div><div class="sc"><span class="si" id="shE">🛡️</span><div class="sm" id="shM">誘惑に負けそうになったら<br>ここをタップ！</div><div class="ss" id="shS">YouTubeやSNSを見たくなったら押してね</div><button class="tmb" id="tmpBtn">😈 誘惑が来た！助けて！</button><div class="rs"><div class="rsi"><span class="rsn" id="resC">0</span><div class="rsl">撃退回数</div></div><div class="rsi"><span class="rsn" id="resS">0</span><div class="rsl">連続撃退</div></div></div></div></div>
 
-  <div class="tc" id="tab-stats"><div class="st">📊 冒険の記録</div><div class="sg"><div class="skc"><div class="sv" id="stF">0</div><div class="sl">集中した時間(分)</div></div><div class="skc"><div class="sv" id="stQ">0</div><div class="sl">完了クエスト</div></div><div class="skc"><div class="sv" id="stX">0</div><div class="sl">獲得EXP</div></div><div class="skc"><div class="sv" id="stR">0</div><div class="sl">誘惑撃退</div></div></div><div class="tlg"><div class="lgt">📅 今日の活動</div><div class="lr"><div class="ll">集中</div><div class="ltk"><div class="lf" id="lgFB" style="width:0%;background:var(--accent1)"></div></div><div class="lv" id="lgFV">0分</div></div><div class="lr"><div class="ll">クエスト</div><div class="ltk"><div class="lf" id="lgQB" style="width:0%;background:var(--accent3)"></div></div><div class="lv" id="lgQV">0/0</div></div><div class="lr"><div class="ll">予定</div><div class="ltk"><div class="lf" id="lgSB" style="width:0%;background:var(--accent5)"></div></div><div class="lv" id="lgSV">0/0</div></div><div class="lr"><div class="ll">撃退</div><div class="ltk"><div class="lf" id="lgRB" style="width:0%;background:var(--accent2)"></div></div><div class="lv" id="lgRV">0回</div></div></div><div id="achList" style="margin-top:14px"></div><button class="btn btn-d" id="rstBtn">🗑️ データリセット</button></div>
+  <div class="tc" id="tab-stats"><div class="st">📊 冒険の記録</div><div class="sg"><div class="skc"><div class="sv" id="stF">0</div><div class="sl">集中した時間(分)</div></div><div class="skc"><div class="sv" id="stQ">0</div><div class="sl">完了クエスト</div></div><div class="skc"><div class="sv" id="stX">0</div><div class="sl">獲得EXP</div></div><div class="skc"><div class="sv" id="stR">0</div><div class="sl">誘惑撃退</div></div></div><div class="tlg"><div class="lgt">📅 今日の活動</div><div class="lr"><div class="ll">集中</div><div class="ltk"><div class="lf" id="lgFB" style="width:0%;background:var(--accent1)"></div></div><div class="lv" id="lgFV">0分</div></div><div class="lr"><div class="ll">クエスト</div><div class="ltk"><div class="lf" id="lgQB" style="width:0%;background:var(--accent3)"></div></div><div class="lv" id="lgQV">0/0</div></div><div class="lr"><div class="ll">撃退</div><div class="ltk"><div class="lf" id="lgRB" style="width:0%;background:var(--accent2)"></div></div><div class="lv" id="lgRV">0回</div></div></div><div id="achList" style="margin-top:14px"></div><button class="btn btn-d" id="rstBtn">🗑️ データリセット</button></div>
 </div>
 
 <!-- Temptation Modal -->
@@ -285,29 +318,120 @@ body.theme-kids::before{content:'';position:fixed;inset:0;background:radial-grad
 <!-- Notification Banner -->
 <div class="notif-banner" id="notifBanner"><div class="notif-icon" id="notifIcon">🔔</div><div class="notif-body"><div class="notif-title" id="notifTitle">リマインド</div><div class="notif-text" id="notifText"></div></div><button class="notif-close" id="notifClose">✕</button></div>
 
+<!-- Help Modal -->
+<div class="mo" id="helpModal"><div class="mc" style="border-color:var(--accent1);box-shadow:0 0 40px rgba(0,212,255,.2);max-width:420px;"><span class="mci">📖</span><div class="mct" style="color:var(--accent1);">つかいかた</div><div class="help-modal-body">
+<div class="help-section"><div class="help-section-title">👤 ユーザー切り替え</div><p>画面上部のボタンで<span class="help-highlight">最大3人</span>のユーザーを切り替えられます。⚙️ボタンで名前・アイコン・レベル/EXPを編集できます。各ユーザーのデータは完全に独立しています。</p></div>
+<div class="help-section"><div class="help-section-title">🗡️/🌈 おとな/こどもモード</div><p>見た目と言葉遣いが切り替わります。おとなモードはサイバーRPG風、こどもモードはカラフルでやさしいデザインです。各ユーザーごとに選べます。</p></div>
+<div class="help-section"><div class="help-section-title">⚔️ クエスト</div><p>今日やることを登録して、完了したらチェック！<span class="help-highlight">1つ完了ごとにEXP獲得</span>（デフォルト+15、個別に変更可）。全部完了すると<span class="help-highlight">+50 EXPボーナス</span>（1日1回）。</p><p>✏️で編集、🔁で毎日/曜日ごとの繰り返し設定ができます。カテゴリ（⚔️通常/🏥健康/📚勉強）でフィルターも可能。</p></div>
+<div class="help-section"><div class="help-section-title">⏱️ 集中タイマー</div><p><span class="help-highlight">短時間刻み勉強法</span>に対応。デフォルト15分で集中→5分休憩を4セット。残り時間が減る円形リングと「<span class="help-highlight">締め切りまであと○分！</span>」の表示で緊迫感UP。完了すると<span class="help-highlight">+25 EXP</span>＋タイムバンクに自動貯金。</p></div>
+<div class="help-section"><div class="help-section-title">🛡️ 誘惑シールド</div><p>YouTubeやSNSを見たくなったらタップ！10秒の冷却タイムと名言で気持ちをリセット。耐えたら<span class="help-highlight">+20 EXP</span>。</p></div>
+<div class="help-section"><div class="help-section-title">🏦 タイムバンク</div><p>集中した時間が自動で貯金されます。貯めた時間は「自由時間」として引き出してメリハリをつけましょう。手動で貯める/使うこともできます。</p></div>
+<div class="help-section"><div class="help-section-title">📊 きろく</div><p>集中時間、完了クエスト数、獲得EXP、誘惑撃退の累計と今日の活動を確認できます。実績（アチーブメント）は条件を満たすと自動で解除されます。</p></div>
+<div class="help-section"><div class="help-section-title">⚡ レベルアップ</div><p><span class="help-highlight">100 EXP</span>ごとにレベルアップ！</p><p>・クエスト完了 → +15 EXP（個別設定可）</p><p>・タイマー完了 → +25 EXP</p><p>・誘惑撃退 → +20 EXP</p><p>・全クエスト完了ボーナス → +50 EXP（1日1回）</p></div>
+<div class="help-section"><div class="help-section-title">📱 スマホでアプリとして使う</div><p>iPhone: Safariで開く → 共有ボタン → 「ホーム画面に追加」<br>Android: Chromeで開く → メニュー → 「ホーム画面に追加」</p></div>
+<div class="help-section"><div class="help-section-title">💾 データについて</div><p>データはブラウザ内に保存されます。同じブラウザ・同じURLで開けばデータは残りますが、ブラウザのデータ消去や別の端末では引き継がれません。</p></div>
+</div><div class="mbs"><button class="btn btn-p" onclick="document.getElementById('helpModal').classList.remove('show')" style="width:100%;justify-content:center;">閉じる</button></div></div></div>
+
+<!-- User Edit Modal -->
+<div class="mo" id="ueModal"><div class="mc" style="border-color:var(--accent1);box-shadow:0 0 40px rgba(0,212,255,.2);"><span class="mci">👤</span><div class="mct" style="color:var(--accent1);" id="ueTitle">ユーザー設定</div><div class="ue-field"><div class="ue-label">なまえ</div><input class="ue-input" id="ueName" maxlength="10" placeholder="名前を入力"></div><div class="ue-field"><div class="ue-label">アイコン</div><div class="ue-emoji-grid" id="ueEmojiGrid"></div></div><div class="ue-field"><div class="ue-label">レベル / EXP（現在のプロフィール）</div><div style="display:flex;gap:8px;align-items:center;"><div style="flex:1;text-align:center;"><div style="font-size:10px;color:var(--text-dim);margin-bottom:4px;">レベル</div><input type="number" class="ue-input" id="ueLv" min="1" max="999" style="text-align:center;font-family:var(--font-pixel);font-size:14px;"></div><div style="flex:1;text-align:center;"><div style="font-size:10px;color:var(--text-dim);margin-bottom:4px;">EXP</div><input type="number" class="ue-input" id="ueXp" min="0" max="99" style="text-align:center;font-family:var(--font-pixel);font-size:14px;"></div></div><div style="font-size:10px;color:var(--text-dim);margin-top:4px;text-align:center;" id="ueExpNote">※ 100 EXPでレベルアップ</div></div><div class="mbs"><button class="btn btn-p" id="ueSave">保存</button><button class="btn btn-g" id="ueCancel">キャンセル</button></div></div></div>
+
 <script>
 const CIRC=2*Math.PI*105,XPL=100;
 const QA=[{t:"今この瞬間に集中しろ。",a:"ブルース・リー"},{t:"小さなことの積み重ねが、とんでもないところへ行く道。",a:"イチロー"},{t:"5分後の自分に感謝されることをしよう。",a:""},{t:"YouTubeは逃げない。でも今この時間は二度と戻らない。",a:""},{t:"サボりたい気持ちは一時的。達成感は一生もの。",a:""},{t:"「あとで」は「やらない」と同じ。今やろう。",a:""},{t:"集中した1時間はダラダラした3時間に勝る。",a:""},{t:"後悔するのは怠けた時だけ。",a:""}];
 const QK=[{t:"今がんばったら、あとでもっと楽しくなるよ！",a:""},{t:"ゲームはにげない。でも今の時間はもどらないよ！",a:""},{t:"あと少しがんばろう！きっとできるよ！",a:""},{t:"ヒーローはさいごまであきらめないんだ！",a:""},{t:"やりたいことは、やるべきことのあとに待ってるよ！",a:""},{t:"しゅうちゅうしたあとのおやつは最高だよ！",a:""}];
-const ACHS=[{id:'q1',n:'🗡️ はじめの一歩',d:'クエスト1完了',c:s=>s.questsDone>=1},{id:'q5',n:'⚔️ クエストハンター',d:'クエスト5完了',c:s=>s.questsDone>=5},{id:'f1',n:'🎯 集中の目覚め',d:'タイマー1回完了',c:s=>s.focusSessions>=1},{id:'f10',n:'🧘 集中マスター',d:'タイマー10回完了',c:s=>s.focusSessions>=10},{id:'r1',n:'🛡️ 初撃退',d:'誘惑1回撃退',c:s=>s.resisted>=1},{id:'r10',n:'💎 鉄の意志',d:'誘惑10回撃退',c:s=>s.resisted>=10},{id:'l5',n:'🌟 Lv.5',d:'レベル5到達',c:s=>s.level>=5},{id:'l10',n:'👑 Lv.10',d:'レベル10到達',c:s=>s.level>=10},{id:'m60',n:'🔥 1時間集中',d:'合計60分集中',c:s=>s.focusMinutes>=60},{id:'m300',n:'🏆 5時間集中',d:'合計300分集中',c:s=>s.focusMinutes>=300},{id:'s5',n:'📋 計画的',d:'予定5つ完了',c:s=>s.schedDone>=5},{id:'s20',n:'📅 スケジューラー',d:'予定20完了',c:s=>s.schedDone>=20}];
+const ACHS=[{id:'q1',n:'🗡️ はじめの一歩',d:'クエスト1完了',c:s=>s.questsDone>=1},{id:'q5',n:'⚔️ クエストハンター',d:'クエスト5完了',c:s=>s.questsDone>=5},{id:'f1',n:'🎯 集中の目覚め',d:'タイマー1回完了',c:s=>s.focusSessions>=1},{id:'f10',n:'🧘 集中マスター',d:'タイマー10回完了',c:s=>s.focusSessions>=10},{id:'r1',n:'🛡️ 初撃退',d:'誘惑1回撃退',c:s=>s.resisted>=1},{id:'r10',n:'💎 鉄の意志',d:'誘惑10回撃退',c:s=>s.resisted>=10},{id:'l5',n:'🌟 Lv.5',d:'レベル5到達',c:s=>s.level>=5},{id:'l10',n:'👑 Lv.10',d:'レベル10到達',c:s=>s.level>=10},{id:'m60',n:'🔥 1時間集中',d:'合計60分集中',c:s=>s.focusMinutes>=60},{id:'m300',n:'🏆 5時間集中',d:'合計300分集中',c:s=>s.focusMinutes>=300},{id:'s5',n:'📋 計画的',d:'全完了ボーナス5回',c:s=>s.bonusCount>=5},{id:'s20',n:'📅 パーフェクト',d:'全完了ボーナス20回',c:s=>s.bonusCount>=20}];
 const PROFS={adult:[{id:'a1',e:'⚔️',n:'冒険者'},{id:'a2',e:'🧙',n:'魔法使い'}],kids:[{id:'k1',e:'🦸',n:'ヒーロー'},{id:'k2',e:'🐱',n:'ネコ'}]};
+const USER_EMOJIS=['😀','😎','🤓','🧑‍💻','👩‍💻','🦸','🧙','🐱','🐶','🦊','🐻','🐼','🦁','🐸','🎮','⚔️','🌟','🔥','💎','🌈'];
+const MAX_USERS=3;
 
-let cMode='adult',cPid='a1';
-function ds(){return{level:1,xp:0,quests:[],focusMinutes:0,focusSessions:0,questsDone:0,resisted:0,resistStreak:0,streak:0,lastActiveDate:null,achievements:[],todayFocusMin:0,todayQuestsDone:0,todayQuestsTotal:0,todayResisted:0,timeBankMinutes:0,schedules:[],schedDone:0,todaySchedDone:0,todaySchedTotal:0};}
+// ========== USER MANAGEMENT ==========
+function getUsers(){try{const r=localStorage.getItem('fq_users');if(r)return JSON.parse(r);}catch(e){}return[{id:'u1',name:'ユーザー1',emoji:'😀'},{id:'u2',name:'ユーザー2',emoji:'😎'},{id:'u3',name:'ユーザー3',emoji:'🤓'}];}
+function saveUsers(users){localStorage.setItem('fq_users',JSON.stringify(users));}
+function getCurUserId(){return localStorage.getItem('fq_curUser')||'u1';}
+function setCurUserId(id){localStorage.setItem('fq_curUser',id);}
+
+let curUserId=getCurUserId();
+
+function rUserSwitcher(){
+  const users=getUsers();
+  document.getElementById('userSwitcher').innerHTML=users.map(u=>{
+    const pid=u.id+'_'+(localStorage.getItem('fq_mode_'+u.id)||'adult')+'_'+(localStorage.getItem('fq_prof_'+u.id)||'a1');
+    const data=lp(u.id+'_'+(localStorage.getItem('fq_mode_'+u.id)||'adult')+'_'+(localStorage.getItem('fq_prof_'+u.id)||'a1'));
+    return`<button class="user-btn ${u.id===curUserId?'active':''}" onclick="switchUser('${u.id}')"><span class="user-emoji">${u.emoji}</span><span class="user-name">${esc(u.name)}</span><span class="user-lv">Lv.${data.level}</span></button>`;
+  }).join('')+`<button class="user-edit-btn" onclick="openUserEdit()" title="編集">⚙️</button>`;
+}
+
+function switchUser(uid){
+  curUserId=uid;setCurUserId(uid);
+  const mode=localStorage.getItem('fq_mode_'+uid)||'adult';
+  const prof=localStorage.getItem('fq_prof_'+uid)||(mode==='kids'?'k1':'a1');
+  cMode=mode;cPid=uid+'_'+mode+'_'+prof;
+  applyMode(mode);
+  rProfs();ld();chkDay();rAll();rUserSwitcher();
+}
+
+let ueEditingId=null;
+function openUserEdit(){
+  ueEditingId=curUserId;
+  const users=getUsers();const u=users.find(x=>x.id===ueEditingId);
+  document.getElementById('ueName').value=u?u.name:'';
+  document.getElementById('ueTitle').textContent=cMode==='kids'?'ユーザーせってい':'ユーザー設定';
+  const grid=document.getElementById('ueEmojiGrid');
+  grid.innerHTML=USER_EMOJIS.map(e=>`<div class="ue-emoji-opt ${u&&u.emoji===e?'sel':''}" onclick="pickUeEmoji(this,'${e}')">${e}</div>`).join('');
+  document.getElementById('ueModal').classList.add('show');
+  document.getElementById('ueLv').value=S.level;
+  document.getElementById('ueXp').value=S.xp;
+}
+function pickUeEmoji(el,e){document.querySelectorAll('.ue-emoji-opt').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');}
+document.getElementById('ueSave').onclick=()=>{
+  const users=getUsers();const u=users.find(x=>x.id===ueEditingId);
+  if(u){
+    const name=document.getElementById('ueName').value.trim()||u.name;
+    const selE=document.querySelector('.ue-emoji-opt.sel');
+    u.name=name;if(selE)u.emoji=selE.textContent;
+    saveUsers(users);
+  }
+  const newLv=parseInt(document.getElementById('ueLv').value)||1;
+  const newXp=Math.min(99,Math.max(0,parseInt(document.getElementById('ueXp').value)||0));
+  S.level=Math.max(1,newLv);S.xp=newXp;sv();
+  document.getElementById('ueModal').classList.remove('show');
+  rUserSwitcher();uStatus();uStats();rAll();
+};
+document.getElementById('ueCancel').onclick=()=>document.getElementById('ueModal').classList.remove('show');
+
+let cMode='adult',cPid='u1_adult_a1';
+function ds(){return{level:1,xp:0,quests:[],focusMinutes:0,focusSessions:0,questsDone:0,resisted:0,resistStreak:0,streak:0,lastActiveDate:null,achievements:[],todayFocusMin:0,todayQuestsDone:0,todayQuestsTotal:0,todayResisted:0,timeBankMinutes:0,todayBonusClaimed:false,bonusCount:0};}
 let S=ds();
 function lp(pid){try{const r=localStorage.getItem('fq_'+pid);if(r)return{...ds(),...JSON.parse(r)};}catch(e){}return ds();}
 function sp(pid,d){try{localStorage.setItem('fq_'+pid,JSON.stringify(d));}catch(e){}}
 function ld(){S=lp(cPid);}function sv(){sp(cPid,S);}
 
 // Mode & Profile
-function setMode(m){cMode=m;localStorage.setItem('fq_mode',m);if(m==='kids'){document.body.classList.add('theme-kids');document.getElementById('msTrack').classList.add('kids');document.getElementById('lA').classList.remove('active-label');document.getElementById('lK').classList.add('active-label');cPid=localStorage.getItem('fq_lkp')||'k1';}else{document.body.classList.remove('theme-kids');document.getElementById('msTrack').classList.remove('kids');document.getElementById('lA').classList.add('active-label');document.getElementById('lK').classList.remove('active-label');cPid=localStorage.getItem('fq_lap')||'a1';}rProfs();ld();chkDay();rAll();}
-function selProf(pid){cPid=pid;if(cMode==='kids')localStorage.setItem('fq_lkp',pid);else localStorage.setItem('fq_lap',pid);ld();chkDay();rAll();rProfs();}
-function rProfs(){const ps=cMode==='kids'?PROFS.kids:PROFS.adult;document.getElementById('profBar').innerHTML=ps.map(p=>`<button class="profile-btn ${p.id===cPid?'active':''}" onclick="selProf('${p.id}')"><span class="pem">${p.e}</span>${p.n}</button>`).join('');}
+function applyMode(m){
+  cMode=m;
+  localStorage.setItem('fq_mode_'+curUserId,m);
+  if(m==='kids'){document.body.classList.add('theme-kids');document.getElementById('msTrack').classList.add('kids');document.getElementById('lA').classList.remove('active-label');document.getElementById('lK').classList.add('active-label');}
+  else{document.body.classList.remove('theme-kids');document.getElementById('msTrack').classList.remove('kids');document.getElementById('lA').classList.add('active-label');document.getElementById('lK').classList.remove('active-label');}
+}
+function setMode(m){
+  applyMode(m);
+  const prof=localStorage.getItem('fq_prof_'+curUserId+'_'+m)||(m==='kids'?'k1':'a1');
+  localStorage.setItem('fq_prof_'+curUserId,prof);
+  cPid=curUserId+'_'+m+'_'+prof;
+  rProfs();ld();chkDay();rAll();
+}
+function selProf(pid){
+  localStorage.setItem('fq_prof_'+curUserId+'_'+cMode,pid);
+  localStorage.setItem('fq_prof_'+curUserId,pid);
+  cPid=curUserId+'_'+cMode+'_'+pid;
+  ld();chkDay();rAll();rProfs();rUserSwitcher();
+}
+function rProfs(){const ps=cMode==='kids'?PROFS.kids:PROFS.adult;const curProf=localStorage.getItem('fq_prof_'+curUserId+'_'+cMode)||(cMode==='kids'?'k1':'a1');document.getElementById('profBar').innerHTML=ps.map(p=>`<button class="profile-btn ${p.id===curProf?'active':''}" onclick="selProf('${p.id}')"><span class="pem">${p.e}</span>${p.n}</button>`).join('');}
 document.getElementById('msTrack').onclick=()=>setMode(cMode==='adult'?'kids':'adult');
 document.getElementById('lA').onclick=()=>setMode('adult');
 document.getElementById('lK').onclick=()=>setMode('kids');
 
-function chkDay(){const t=new Date().toDateString();if(S.lastActiveDate&&S.lastActiveDate!==t){const y=new Date(Date.now()-864e5).toDateString();S.streak=(S.lastActiveDate===y)?S.streak+1:1;S.todayFocusMin=0;S.todayQuestsDone=0;S.todayQuestsTotal=0;S.todayResisted=0;S.todaySchedDone=0;S.todaySchedTotal=0;S.quests=S.quests.filter(q=>!q.done);S.schedules=[];}else if(!S.lastActiveDate){S.streak=1;}S.lastActiveDate=t;sv();}
+function chkDay(){const t=new Date().toDateString();if(S.lastActiveDate&&S.lastActiveDate!==t){const y=new Date(Date.now()-864e5).toDateString();S.streak=(S.lastActiveDate===y)?S.streak+1:1;S.todayFocusMin=0;S.todayQuestsDone=0;S.todayQuestsTotal=0;S.todayResisted=0;S.todayBonusClaimed=false;const repeats=S.quests.filter(q=>q.repeat).map(q=>({text:q.text,done:false,repeat:true,xp:q.xp||15,days:q.days,cat:q.cat||''}));const undone=S.quests.filter(q=>!q.done&&!q.repeat);S.quests=[...repeats,...undone];S.todayQuestsTotal=S.quests.length;}else if(!S.lastActiveDate){S.streak=1;}S.lastActiveDate=t;sv();}
 
 // XP
 function addXP(n){S.xp+=n;let u=false;while(S.xp>=XPL){S.xp-=XPL;S.level++;u=true;}sv();uStatus();sXP(n);if(u)sLU();chkAch();}
@@ -315,128 +439,79 @@ function sXP(n){const e=document.createElement('div');e.className='xpp';e.textCo
 function sLU(){document.getElementById('luL').textContent=`Lv.${S.level}`;const o=document.getElementById('luO');o.classList.add('show');if(navigator.vibrate)navigator.vibrate([100,80,100,80,200]);setTimeout(()=>o.classList.remove('show'),2800);}
 
 // UI helpers
-function gP(){const l=cMode==='kids'?PROFS.kids:PROFS.adult;return l.find(p=>p.id===cPid)||l[0];}
+function gP(){const l=cMode==='kids'?PROFS.kids:PROFS.adult;const curProf=localStorage.getItem('fq_prof_'+curUserId+'_'+cMode)||(cMode==='kids'?'k1':'a1');return l.find(p=>p.id===curProf)||l[0];}
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
-function uStatus(){const p=gP();document.getElementById('pAvatar').textContent=p.e;document.getElementById('pName').textContent=p.n;document.getElementById('pLevel').textContent=`Lv.${S.level}`;document.getElementById('xpBar').style.width=`${(S.xp/XPL)*100}%`;document.getElementById('strk').textContent=S.streak;}
+function uStatus(){const p=gP();const users=getUsers();const u=users.find(x=>x.id===curUserId);document.getElementById('pAvatar').textContent=u?u.emoji:p.e;document.getElementById('pName').textContent=u?u.name:p.n;document.getElementById('pLevel').textContent=`Lv.${S.level}`;document.getElementById('xpBar').style.width=`${(S.xp/XPL)*100}%`;document.getElementById('strk').textContent=S.streak;}
 function uTB(){const h=Math.floor(Math.abs(S.timeBankMinutes)/60),m=Math.abs(S.timeBankMinutes)%60,sg=S.timeBankMinutes<0?'-':'';document.getElementById('tbBal').textContent=`${sg}${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;document.getElementById('tbSub').textContent=cMode==='kids'?'がんばった時間をためて、あそぶ時間にしよう！':'集中した時間を貯金して、自由時間に変換しよう';document.getElementById('tbTT').textContent=cMode==='kids'?'じかんぎんこう':'タイムバンク';}
 function uShield(){document.getElementById('resC').textContent=S.resisted;document.getElementById('resS').textContent=S.resistStreak;if(cMode==='kids'){document.getElementById('shE').textContent='🦸';document.getElementById('shM').innerHTML='ゆうわくがきたら<br>ここをタップ！';document.getElementById('shS').textContent='ゲームやどうがを見たくなったらおしてね';document.getElementById('tmpBtn').textContent='😈 たすけて！ゆうわくがきた！';}else{document.getElementById('shE').textContent='🛡️';document.getElementById('shM').innerHTML='誘惑に負けそうになったら<br>ここをタップ！';document.getElementById('shS').textContent='YouTubeやSNSを見たくなったら押してね';document.getElementById('tmpBtn').textContent='😈 誘惑が来た！助けて！';}}
-function uStats(){document.getElementById('stF').textContent=S.focusMinutes;document.getElementById('stQ').textContent=S.questsDone;document.getElementById('stX').textContent=S.level*XPL+S.xp;document.getElementById('stR').textContent=S.resisted;document.getElementById('lgFB').style.width=Math.min(100,(S.todayFocusMin/120)*100)+'%';document.getElementById('lgFV').textContent=S.todayFocusMin+'分';const qP=S.todayQuestsTotal>0?(S.todayQuestsDone/S.todayQuestsTotal)*100:0;document.getElementById('lgQB').style.width=qP+'%';document.getElementById('lgQV').textContent=`${S.todayQuestsDone}/${S.todayQuestsTotal}`;const sP=S.todaySchedTotal>0?(S.todaySchedDone/S.todaySchedTotal)*100:0;document.getElementById('lgSB').style.width=sP+'%';document.getElementById('lgSV').textContent=`${S.todaySchedDone}/${S.todaySchedTotal}`;document.getElementById('lgRB').style.width=Math.min(100,(S.todayResisted/10)*100)+'%';document.getElementById('lgRV').textContent=S.todayResisted+'回';}
+function uStats(){document.getElementById('stF').textContent=S.focusMinutes;document.getElementById('stQ').textContent=S.questsDone;document.getElementById('stX').textContent=S.level*XPL+S.xp;document.getElementById('stR').textContent=S.resisted;document.getElementById('lgFB').style.width=Math.min(100,(S.todayFocusMin/120)*100)+'%';document.getElementById('lgFV').textContent=S.todayFocusMin+'分';const qP=S.todayQuestsTotal>0?(S.todayQuestsDone/S.todayQuestsTotal)*100:0;document.getElementById('lgQB').style.width=qP+'%';document.getElementById('lgQV').textContent=`${S.todayQuestsDone}/${S.todayQuestsTotal}`;document.getElementById('lgRB').style.width=Math.min(100,(S.todayResisted/10)*100)+'%';document.getElementById('lgRV').textContent=S.todayResisted+'回';}
 function rAch(){document.getElementById('achList').innerHTML='<div class="st" style="margin-bottom:10px">🏆 実績</div>'+ACHS.map(a=>{const u=S.achievements.includes(a.id);return`<div class="ach ${u?'ul':'lk'}"><div class="ai">${a.n.split(' ')[0]}</div><div class="af"><div class="an">${a.n}</div><div class="ad">${a.d}</div></div></div>`;}).join('');}
 function chkAch(){let c=false;ACHS.forEach(a=>{if(!S.achievements.includes(a.id)&&a.c(S)){S.achievements.push(a.id);c=true;}});if(c){sv();rAch();}}
-function rAll(){uStatus();uTB();rQuests();uTmDisp();uShield();uStats();rAch();chkAch();rSched();}
+function rAll(){uStatus();uTB();rQuests();uTmDisp();uShield();uStats();rAch();chkAch();}
 
 // Quests
-function rQuests(){const el=document.getElementById('qList');if(S.quests.length===0){const m=cMode==='kids'?'クエストをついかして ぼうけんをはじめよう！':'クエストを追加して冒険を始めよう！';el.innerHTML=`<div class="qe"><span class="ei">🗡️</span>${m}</div>`;return;}el.innerHTML=S.quests.map((q,i)=>`<div class="qc ${q.done?'done':''}"><button class="qk" onclick="tglQ(${i})">${q.done?'✓':''}</button><span class="qt">${esc(q.text)}</span><span class="qx">${q.done?'✓':'+15'}</span><button class="qd" onclick="delQ(${i})">×</button></div>`).join('');}
-function addQ(){const inp=document.getElementById('qInp');const t=inp.value.trim();if(!t)return;S.quests.push({text:t,done:false});S.todayQuestsTotal++;inp.value='';sv();rQuests();uStats();}
-function tglQ(i){const q=S.quests[i];if(!q.done){q.done=true;S.questsDone++;S.todayQuestsDone++;sv();rQuests();uStats();addXP(15);}else{q.done=false;S.questsDone=Math.max(0,S.questsDone-1);S.todayQuestsDone=Math.max(0,S.todayQuestsDone-1);sv();rQuests();uStats();}}
+const DAYS=['日','月','火','水','木','金','土'];
+const CATS=[{id:'',label:'⚔️ 全部',labelK:'⚔️ ぜんぶ'},{id:'health',label:'🏥 健康',labelK:'🏥 けんこう'},{id:'study',label:'📚 勉強',labelK:'📚 べんきょう'}];
+let qFilter='';
+function initDayBtns(containerId,selected){
+  const c=document.getElementById(containerId);if(!c)return;
+  c.innerHTML=DAYS.map((d,i)=>`<button class="day-btn ${(selected||[]).includes(i)?'sel':''}" data-day="${i}" onclick="this.classList.toggle('sel')">${d}</button>`).join('');
+}
+function initAddDays(){initDayBtns('qDaysRow',[0,1,2,3,4,5,6]);}
+initAddDays();
+function getDaysFromContainer(containerId){
+  const btns=document.querySelectorAll('#'+containerId+' .day-btn.sel');
+  return Array.from(btns).map(b=>parseInt(b.dataset.day));
+}
+function dayLabel(days){
+  if(!days||days.length===0)return '';
+  if(days.length===7)return '🔁毎日';
+  return '🔁'+days.map(d=>DAYS[d]).join('');
+}
+function catLabel(cat){
+  if(cat==='health')return '<span class="q-cat q-cat-health">🏥</span>';
+  if(cat==='study')return '<span class="q-cat q-cat-study">📚</span>';
+  return '';
+}
+function catName(cat){
+  const c=CATS.find(x=>x.id===cat);
+  return c?(cMode==='kids'?c.labelK:c.label):'';
+}
+function setQFilter(f){qFilter=f;rQuests();}
+function rFilters(){
+  document.getElementById('qFilters').innerHTML=CATS.map(c=>
+    `<button class="q-fil ${qFilter===c.id?'active':''}" onclick="setQFilter('${c.id}')">${cMode==='kids'?c.labelK:c.label}</button>`
+  ).join('');
+}
+
+let editingIdx=-1;
+function rQuests(){const el=document.getElementById('qList');const today=new Date().getDay();
+rFilters();
+// Filter by day
+let visible=S.quests.map((q,i)=>({q,i})).filter(({q})=>!q.repeat||!q.days||q.days.length===0||q.days.includes(today));
+// Filter by category
+if(qFilter){visible=visible.filter(({q})=>(q.cat||'')===qFilter);}
+const allToday=S.quests.map((q,i)=>({q,i})).filter(({q})=>!q.repeat||!q.days||q.days.length===0||q.days.includes(today));
+if(S.quests.length===0){const m=cMode==='kids'?'クエストをついかして ぼうけんをはじめよう！':'クエストを追加して冒険を始めよう！';el.innerHTML=`<div class="qe"><span class="ei">🗡️</span>${m}</div>`;return;}
+if(visible.length===0){el.innerHTML=`<div class="qe"><span class="ei">📋</span>${cMode==='kids'?'このカテゴリのクエストはないよ':'このカテゴリのクエストはありません'}</div>`;return;}
+const allDone=allToday.length>0&&allToday.every(({q})=>q.done);
+el.innerHTML=visible.map(({q,i})=>{
+const xp=q.xp||15;
+if(editingIdx===i){const rChk=q.repeat?'checked':'';return`<div class="qc"><div style="flex:1;display:flex;flex-direction:column;gap:6px;"><input class="q-edit-input" id="qEditInp" value="${esc(q.text)}" maxlength="100"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><label style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-dim);"><span>⚡</span><input type="number" id="qEditXp" value="${xp}" min="1" max="999" style="width:46px;padding:3px 4px;background:var(--bg-card2);border:1px solid var(--border-glow);border-radius:6px;color:var(--text-main);font-family:var(--font-pixel);font-size:9px;text-align:center;outline:none;"></label><select id="qEditCat" style="padding:3px 6px;background:var(--bg-card2);border:1px solid var(--border-glow);border-radius:6px;color:var(--text-main);font-family:var(--font-body);font-size:11px;outline:none;"><option value="" ${!(q.cat)?'selected':''}>⚔️ 通常</option><option value="health" ${q.cat==='health'?'selected':''}>🏥 健康</option><option value="study" ${q.cat==='study'?'selected':''}>📚 勉強</option></select><label style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--accent5);cursor:pointer;"><input type="checkbox" id="qEditRepeat" ${rChk} style="accent-color:var(--accent5);width:14px;height:14px;" onchange="document.getElementById('qEditDaysRow').style.display=this.checked?'flex':'none'">🔁</label></div><div id="qEditDaysRow" style="${q.repeat?'display:flex':'display:none'};gap:4px;flex-wrap:wrap;"></div></div><div class="q-actions" style="flex-direction:column;"><button class="qed" onclick="saveEdit(${i})" title="保存">✓</button><button class="qed" onclick="cancelEdit()" title="キャンセル">✕</button></div></div>`;}
+const rp=q.repeat?`<span class="q-days-mini">${dayLabel(q.days)}</span>`:'';
+const ct=catLabel(q.cat);
+return`<div class="qc ${q.done?'done':''}"><button class="qk" onclick="tglQ(${i})">${q.done?'✓':''}</button><span class="qt">${esc(q.text)}${ct}${rp}</span><span class="qx">${q.done?'✓':'+'+xp}</span><div class="q-actions"><button class="qed" onclick="startEdit(${i})" title="編集">✏️</button><button class="qd" onclick="delQ(${i})" title="削除">×</button></div></div>`;}).join('')+(allDone&&!S.todayBonusClaimed?`<div style="text-align:center;margin-top:14px;padding:16px;background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,230,0,.05));border:2px solid var(--gold);border-radius:var(--radius);animation:tabIn .3s ease;"><div style="font-size:32px;margin-bottom:8px;">🏆</div><div style="font-family:var(--font-pixel);font-size:11px;color:var(--gold);margin-bottom:10px;">${cMode==='kids'?'ぜんぶできた！すごい！':'ALL QUEST COMPLETE!'}</div><button class="btn btn-p" onclick="claimBonus()" style="margin:0 auto;display:flex;">${cMode==='kids'?'⭐ ボーナスもらう！':'⭐ ボーナス +50 EXP'}</button></div>`:'')+(allDone&&S.todayBonusClaimed?`<div style="text-align:center;margin-top:14px;padding:12px;border-radius:var(--radius);background:rgba(57,255,20,.06);border:1px solid rgba(57,255,20,.15);"><span style="font-family:var(--font-pixel);font-size:10px;color:var(--accent3);">${cMode==='kids'?'✅ ボーナスゲット！えらい！':'✅ 全完了ボーナス獲得済み！'}</span></div>`:'');
+if(editingIdx>=0){const inp=document.getElementById('qEditInp');if(inp){inp.focus();inp.onkeydown=e=>{if(e.key==='Enter')saveEdit(editingIdx);if(e.key==='Escape')cancelEdit();};}
+const q=S.quests[editingIdx];initDayBtns('qEditDaysRow',q.days||[0,1,2,3,4,5,6]);}}
+function startEdit(i){editingIdx=i;rQuests();}
+function cancelEdit(){editingIdx=-1;rQuests();}
+function saveEdit(i){const inp=document.getElementById('qEditInp');const rp=document.getElementById('qEditRepeat');const xpInp=document.getElementById('qEditXp');const catInp=document.getElementById('qEditCat');const t=inp?inp.value.trim():'';if(t){S.quests[i].text=t;S.quests[i].repeat=rp?rp.checked:false;S.quests[i].xp=Math.max(1,parseInt(xpInp?.value)||15);S.quests[i].cat=catInp?catInp.value:'';if(rp&&rp.checked){S.quests[i].days=getDaysFromContainer('qEditDaysRow');}else{delete S.quests[i].days;}sv();}editingIdx=-1;rQuests();}
+function claimBonus(){S.todayBonusClaimed=true;S.bonusCount=(S.bonusCount||0)+1;sv();rQuests();addXP(50);}
+function addQ(){const inp=document.getElementById('qInp');const t=inp.value.trim();if(!t)return;const repeat=document.getElementById('qRepeat').checked;const xp=Math.max(1,parseInt(document.getElementById('qExpInp').value)||15);const cat=document.getElementById('qCatInp').value;const q={text:t,done:false,repeat:repeat,xp:xp,cat:cat};if(repeat){q.days=getDaysFromContainer('qDaysRow');}S.quests.push(q);S.todayQuestsTotal++;inp.value='';document.getElementById('qRepeat').checked=false;document.getElementById('qDaysRow').style.display='none';document.getElementById('qExpInp').value='15';document.getElementById('qCatInp').value='';initAddDays();sv();rQuests();uStats();}
+function tglQ(i){const q=S.quests[i];const xp=q.xp||15;if(!q.done){q.done=true;S.questsDone++;S.todayQuestsDone++;sv();rQuests();uStats();addXP(xp);}else{q.done=false;S.questsDone=Math.max(0,S.questsDone-1);S.todayQuestsDone=Math.max(0,S.todayQuestsDone-1);sv();rQuests();uStats();}}
 function delQ(i){S.quests.splice(i,1);sv();rQuests();uStats();}
 document.getElementById('addQ').onclick=addQ;
 document.getElementById('qInp').onkeydown=e=>{if(e.key==='Enter')addQ();};
-
-// ========== SCHEDULE ==========
-function addSched(){
-  const time=document.getElementById('schedTimeInp').value;
-  const text=document.getElementById('schedTextInp').value.trim();
-  if(!text)return;
-  S.schedules.push({time,text,done:false,missed:false,notified:false});
-  S.schedules.sort((a,b)=>a.time.localeCompare(b.time));
-  S.todaySchedTotal++;
-  document.getElementById('schedTextInp').value='';
-  sv();rSched();uStats();
-}
-document.getElementById('addSched').onclick=addSched;
-document.getElementById('schedTextInp').onkeydown=e=>{if(e.key==='Enter')addSched();};
-
-function tglSched(i){
-  const s=S.schedules[i];
-  if(!s.done&&!s.missed){
-    s.done=true;S.schedDone++;S.todaySchedDone++;sv();rSched();uStats();addXP(10);
-  }else if(s.done){
-    s.done=false;S.schedDone=Math.max(0,S.schedDone-1);S.todaySchedDone=Math.max(0,S.todaySchedDone-1);sv();rSched();uStats();
-  }
-}
-function delSched(i){S.schedules.splice(i,1);sv();rSched();uStats();}
-
-function rSched(){
-  document.getElementById('schedTitle').textContent=cMode==='kids'?'きょうのよてい':'今日のスケジュール';
-  const tl=document.getElementById('schedTimeline');
-  const now=new Date();const nowStr=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-  
-  // Summary
-  const total=S.schedules.length;
-  const done=S.schedules.filter(s=>s.done).length;
-  const missed=S.schedules.filter(s=>s.missed).length;
-  document.getElementById('ssTotal').textContent=total;
-  document.getElementById('ssDone').textContent=done;
-  document.getElementById('ssMissed').textContent=missed;
-  
-  if(total===0){
-    tl.innerHTML=`<div class="sched-empty"><span class="sei">📋</span>${cMode==='kids'?'よていをついかしよう！':'予定を追加してスケジュールを組もう！'}</div>`;
-    return;
-  }
-  
-  tl.innerHTML=S.schedules.map((s,i)=>{
-    let cls='';
-    if(s.done)cls='done';
-    else if(s.missed)cls='missed';
-    else if(s.time<=nowStr&&s.time>nowStr.slice(0,3)+String(Math.max(0,parseInt(nowStr.slice(3))-30)).padStart(2,'0'))cls='current';
-    else if(s.time<nowStr)cls='past';
-    
-    const statusText=s.done?(cMode==='kids'?'✅ できた！':'✅ 完了 +10 EXP'):s.missed?(cMode==='kids'?'❌ できなかった...':'❌ 未達'):(s.time<=nowStr?(cMode==='kids'?'⏰ いまやるじかん！':'⏰ 実行時間です！'):(cMode==='kids'?'🕐 まだだよ':'🕐 予定'));
-    
-    return`<div class="tl-item ${cls}"><div class="tl-dot"></div><div class="tl-card"><div class="tl-time">${s.time}</div><div class="tl-info"><div class="tl-name">${esc(s.text)}</div><div class="tl-status">${statusText}</div></div><div class="tl-actions"><button class="tl-check" onclick="tglSched(${i})">${s.done?'✓':''}</button><button class="tl-del" onclick="delSched(${i})">×</button></div></div></div>`;
-  }).join('');
-}
-
-// Schedule notification checker
-let notifTimer=null;
-function startNotifChecker(){
-  if(notifTimer)clearInterval(notifTimer);
-  // Request notification permission
-  if('Notification' in window && Notification.permission==='default'){
-    Notification.requestPermission();
-  }
-  notifTimer=setInterval(checkScheduleNotifs,30000);// check every 30s
-  checkScheduleNotifs();
-}
-
-function checkScheduleNotifs(){
-  const now=new Date();
-  const nowStr=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-  
-  S.schedules.forEach((s,i)=>{
-    if(s.done||s.missed||s.notified)return;
-    
-    // Notify when time matches (within 1 min)
-    if(s.time===nowStr||s.time===String(now.getHours()).padStart(2,'0')+':'+String(Math.max(0,now.getMinutes()-1)).padStart(2,'0')){
-      s.notified=true;sv();
-      showInAppNotif(s.text,s.time);
-      // Browser notification
-      if('Notification' in window && Notification.permission==='granted'){
-        new Notification('📋 Focus Quest',{body:`${s.time} ${s.text}`,icon:'⏰'});
-      }
-    }
-    
-    // Mark as missed if 30 min past and not done
-    const [h,m]=s.time.split(':').map(Number);
-    const schedMin=h*60+m;
-    const nowMin=now.getHours()*60+now.getMinutes();
-    if(nowMin-schedMin>30&&!s.done){
-      s.missed=true;sv();rSched();
-    }
-  });
-}
-
-function showInAppNotif(text,time){
-  const b=document.getElementById('notifBanner');
-  document.getElementById('notifIcon').textContent='🔔';
-  document.getElementById('notifTitle').textContent=cMode==='kids'?'⏰ よていのじかん！':'⏰ リマインド';
-  document.getElementById('notifText').textContent=`${time} ${text}`;
-  b.classList.add('show');
-  if(navigator.vibrate)navigator.vibrate([200,100,200]);
-  setTimeout(()=>b.classList.remove('show'),8000);
-}
-document.getElementById('notifClose').onclick=()=>document.getElementById('notifBanner').classList.remove('show');
 
 // Timer
 const ring=document.getElementById('tmRing');
@@ -477,12 +552,10 @@ document.querySelectorAll('.nav-tab').forEach(t=>{t.onclick=()=>{document.queryS
 document.getElementById('rstBtn').onclick=()=>{if(confirm(cMode==='kids'?'データをぜんぶけしますか？':'全データをリセットしますか？')){S=ds();sv();rAll();}};
 
 // PWA
-function chkPWA(){if(!(window.matchMedia('(display-mode:standalone)').matches||window.navigator.standalone)&&!localStorage.getItem('fq_pd')){document.getElementById('pwaBanner').classList.add('show');}}
-document.getElementById('pwaBannerClose').onclick=()=>{document.getElementById('pwaBanner').classList.remove('show');localStorage.setItem('fq_pd','1');};
 function setupMF(){const m={name:"Focus Quest",short_name:"FocusQuest",description:"集中力アップアプリ",start_url:".",display:"standalone",background_color:"#0a0a1a",theme_color:"#0a0a1a",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>⚔️</text></svg>",sizes:"any",type:"image/svg+xml"}]};document.getElementById('manifestLink').href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));}
 function regSW(){if('serviceWorker'in navigator){const c="self.addEventListener('install',e=>{self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(clients.claim());});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>new Response('Offline')));});";navigator.serviceWorker.register(URL.createObjectURL(new Blob([c],{type:'application/javascript'}))).catch(()=>{});}}
 
-function init(){setupMF();regSW();setMode(localStorage.getItem('fq_mode')||'adult');chkPWA();startNotifChecker();}
+function init(){setupMF();regSW();curUserId=getCurUserId();switchUser(curUserId);}
 init();
 </script>
 </body>
